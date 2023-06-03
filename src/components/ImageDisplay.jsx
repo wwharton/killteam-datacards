@@ -9,7 +9,7 @@ const ImageDisplay = ({ imageName }) => {
       height: 'calc(100vh - 230px)', // adjust this based on the size of your header
       width: '100vw'
     }}>
-      <img src={`/killteam-datacards/images/${imageName}`} alt="" style={{ 
+      <img src={`/images/${imageName}`} alt="" style={{ 
         maxWidth: '100%', 
         maxHeight: '100%', 
         objectFit: 'contain' 
