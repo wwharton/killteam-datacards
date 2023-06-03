@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "node scripts/generateImageList.js && react-scripts start",
-    "predeploy" : "npm run build && react-scripts build",
+    "predeploy" : "npm run build",
     "deploy" : "gh-pages -d build",
     "build": "node scripts/generateImageList.js && react-scripts build",
     "test": "react-scripts test",
