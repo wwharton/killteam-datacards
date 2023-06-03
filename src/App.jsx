@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
-import SearchBar from './SearchBar';
+import SearchBar from './components/SearchBar';
 import ImageDisplay from './components/ImageDisplay';
 import imageNames from './data/imageNames.json';
 import ImageButtons from './components/ImageButtons';
