@@ -1,0 +1,3 @@
+export const imageNames = ["guardsmen/bruiser.png","orks/bomb-squig.png","orks/boy.png","orks/breacha.png","orks/burna.png","orks/comms.png","orks/dakka.png","orks/grot.png","orks/nob.png","orks/rokkit.png","orks/slasha.png","orks/snipa.png"];
+                      export const imageTitles = {"guardsmen/bruiser.png":"Bruiser","orks/bomb-squig.png":"Bomb squig","orks/boy.png":"Boy","orks/breacha.png":"Breacha","orks/burna.png":"Burna","orks/comms.png":"Comms","orks/dakka.png":"Dakka","orks/grot.png":"Grot","orks/nob.png":"Nob","orks/rokkit.png":"Rokkit","orks/slasha.png":"Slasha","orks/snipa.png":"Snipa"};
+                      export const directories = [{"directory_path":"guardsmen","directory_title":"Guardsmen"},{"directory_path":"orks","directory_title":"Orks"}];

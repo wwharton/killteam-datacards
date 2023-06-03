@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
 import SearchBar from './components/SearchBar';
 import ImageDisplay from './components/ImageDisplay';
-import { imageNames, imageTitles } from './data/imageNames.js';
+import { imageNames, imageTitles, directories } from './data/imageData.js';
 import ImageButtons from './components/ImageButtons';
-
-
+import DirectoryButtons from './components/DirectoryButtons';
 
 // Fuse.js options; adjust as needed
 const options = {
@@ -25,6 +24,8 @@ const fuse = new Fuse(imageNames.map(name => ({ name })), options);
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [matchedImage, setMatchedImage] = useState('');
+  const [selectedDirectory, setSelectedDirectory] = useState('orks');
+
 
   useEffect(() => {
     handleSearch();
@@ -54,7 +55,13 @@ const App = () => {
         width: '10%', // adjust as needed
       }}>
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <ImageButtons imageNames={imageNames} imageTitles={imageTitles} onImageSelect={setMatchedImage} />
+        <DirectoryButtons directories={directories} onDirectorySelect={setSelectedDirectory} />
+        <ImageButtons 
+          imageNames={imageNames} 
+          imageTitles={imageTitles} 
+          onImageSelect={setMatchedImage} 
+          selectedDirectory={selectedDirectory} 
+        />
       </div>
       <div style={{
         width: '90%', // adjust as needed

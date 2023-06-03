@@ -1,37 +1,59 @@
 // scripts/generateImageList.js
 
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
 const imageDirectory = path.join(__dirname, '../public/images');
-const outputFilePath = path.join(__dirname, '../src/data/imageNames.js');
+const outputFilePath = path.join(__dirname, '../src/data/imageData.js');
 
-// Function to convert file name to title case
+// Function to convert string to title case
 const toTitleCase = (str) => {
   return str.replace(/-/g, ' ')
-    .replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase())
-    .replace('.png', '');
+    .replace('.png', '')
+    .replace(/^\w/, (c) => c.toUpperCase());
 };
 
-fs.readdir(imageDirectory, (err, files) => {
-  if (err) {
-    console.error('Could not list the directory.', err);
-    process.exit(1);
+
+// Recursive function to process directories
+async function processDirectory(dirPath) {
+  const entries = await fs.readdir(dirPath, { withFileTypes: true });
+
+  const results = {
+    imageNames: [],
+    imageTitles: {},
+    directories: []
+  };
+
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    if (entry.isDirectory()) {
+      results.directories.push({
+        directory_path: path.relative(imageDirectory, fullPath),
+        directory_title: toTitleCase(entry.name)
+      });
+      const subResults = await processDirectory(fullPath);
+      results.imageNames.push(...subResults.imageNames);
+      Object.assign(results.imageTitles, subResults.imageTitles);
+    } else if (entry.name.endsWith('.png') && entry.name !== 'not-found.png') {
+      const imageName = path.relative(imageDirectory, fullPath);
+      results.imageNames.push(imageName);
+      results.imageTitles[imageName] = toTitleCase(entry.name);
+    }
   }
 
-  const imageNames = files.filter(file => file.endsWith('.png')); // adjust this as needed
-  const imageTitles = imageNames.reduce((obj, imageName) => {
-    obj[imageName] = toTitleCase(imageName);
-    return obj;
-  }, {});
-  const outputData = `export const imageNames = ${JSON.stringify(imageNames)};
-                      export const imageTitles = ${JSON.stringify(imageTitles)};`;
+  return results;
+}
 
-  fs.writeFile(outputFilePath, outputData, err => {
-    if (err) {
-      console.error('Error writing file:', err);
-    } else {
-      console.log('File written successfully');
-    }
+processDirectory(imageDirectory).then(results => {
+  const outputData = `export const imageNames = ${JSON.stringify(results.imageNames)};
+                      export const imageTitles = ${JSON.stringify(results.imageTitles)};
+                      export const directories = ${JSON.stringify(results.directories)};`;
+
+  fs.writeFile(outputFilePath, outputData).then(() => {
+    console.log('File written successfully');
+  }).catch(err => {
+    console.error('Error writing file:', err);
   });
+}).catch(err => {
+  console.error('Could not list the directory.', err);
 });

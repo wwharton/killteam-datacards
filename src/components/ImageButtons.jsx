@@ -1,6 +1,10 @@
 import React from 'react';
 
-const ImageButtons = ({ imageNames, imageTitles, onImageSelect }) => {
+const ImageButtons = ({ imageNames, selectedDirectory, onImageSelect, imageTitles }) => {
+  const filteredImageNames = selectedDirectory
+    ? imageNames.filter(name => name.startsWith(`${selectedDirectory}/`))
+    : imageNames;
+
   return (
     <div style={{
       display: 'flex',
@@ -11,7 +15,7 @@ const ImageButtons = ({ imageNames, imageTitles, onImageSelect }) => {
       flexDirection: 'column', 
       alignItems: 'left',
     }}>
-      {imageNames.map(name => (
+      {filteredImageNames.map(name => (
         <button 
           key={name} 
           onClick={() => onImageSelect(name)}
