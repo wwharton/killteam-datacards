@@ -46,8 +46,7 @@ const App = () => {
         justifyContent: 'center',
         margin: '20px',
         flexDirection: 'column', 
-      alignItems: 'center',
-      justifyContent: 'flex-start',
+        alignItems: 'center',
       }}>
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <ImageButtons imageNames={imageNames} onImageSelect={setMatchedImage} />
