@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ImageButtons = ({ imageNames, onImageSelect }) => {
+const ImageButtons = ({ imageNames, imageTitles, onImageSelect }) => {
   return (
     <div style={{
       display: 'flex',
@@ -8,6 +8,8 @@ const ImageButtons = ({ imageNames, onImageSelect }) => {
       flexWrap: 'wrap',
       gap: '10px', // space between buttons
       margin: '20px',
+      flexDirection: 'column', 
+      alignItems: 'left',
     }}>
       {imageNames.map(name => (
         <button 
@@ -18,12 +20,13 @@ const ImageButtons = ({ imageNames, onImageSelect }) => {
             color: 'white',
             padding: '10px 20px',
             fontSize: '1.5em',
+            width: '10',
             border: 'none',
             borderRadius: '5px',
             cursor: 'pointer',
           }}
         >
-          {name}
+          {imageTitles[name]}
         </button>
       ))}
     </div>

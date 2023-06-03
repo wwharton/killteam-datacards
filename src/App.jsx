@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Fuse from 'fuse.js';
 import SearchBar from './components/SearchBar';
 import ImageDisplay from './components/ImageDisplay';
-import imageNames from './data/imageNames.json';
+import { imageNames, imageTitles } from './data/imageNames.js';
 import ImageButtons from './components/ImageButtons';
+
 
 
 // Fuse.js options; adjust as needed
@@ -40,20 +41,26 @@ const App = () => {
   }
 
   return (
-    <div>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      margin: '20px',
+      alignItems: 'flex-start',
+    }}>
       <div style={{
         display: 'flex',
-        justifyContent: 'center',
-        margin: '20px',
         flexDirection: 'column', 
         alignItems: 'center',
+        width: '10%', // adjust as needed
       }}>
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-        <ImageButtons imageNames={imageNames} onImageSelect={setMatchedImage} />
-        {/* {searchTerm && <p>Showing results for: {searchTerm}</p>} */}
-        {/* {matchedImage && <p>Matched image: {matchedImage}</p> } */}
+        <ImageButtons imageNames={imageNames} imageTitles={imageTitles} onImageSelect={setMatchedImage} />
       </div>
-      <ImageDisplay imageName={matchedImage} />
+      <div style={{
+        width: '90%', // adjust as needed
+      }}>
+        <ImageDisplay imageName={matchedImage} />
+      </div>
     </div>
   );
 }

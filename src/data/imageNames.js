@@ -1,0 +1,2 @@
+export const imageNames = ["bomb-squig.png","boy.png","breacha.png","burna.png","comms.png","dakka.png","grot.png","nob.png","not-found.png","rokkit.png","slasha.png","snipa.png"];
+export const imageTitles = {"bomb-squig.png":"Bomb Squig","boy.png":"Boy","breacha.png":"Breacha","burna.png":"Burna","comms.png":"Comms","dakka.png":"Dakka","grot.png":"Grot","nob.png":"Nob","not-found.png":"Not Found","rokkit.png":"Rokkit","slasha.png":"Slasha","snipa.png":"Snipa"};
