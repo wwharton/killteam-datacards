@@ -5,6 +5,8 @@ import ImageDisplay from './components/ImageDisplay';
 import { imageNames, imageTitles, directories } from './data/imageData.js';
 import ImageButtons from './components/ImageButtons';
 import DirectoryButtons from './components/DirectoryButtons';
+import './App.css';
+
 
 // Fuse.js options; adjust as needed
 const options = {
@@ -42,18 +44,8 @@ const App = () => {
   }
 
   return (
-    <div style={{
-      display: 'flex',
-      justifyContent: 'space-between',
-      margin: '20px',
-      alignItems: 'flex-start',
-    }}>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column', 
-        alignItems: 'center',
-        width: '10%', // adjust as needed
-      }}>
+    <div className="container">
+      <div className="buttonContainer">
         <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
         <DirectoryButtons directories={directories} onDirectorySelect={setSelectedDirectory} />
         <ImageButtons 
@@ -63,14 +55,13 @@ const App = () => {
           selectedDirectory={selectedDirectory} 
         />
       </div>
-      <div style={{
-        width: '90%', // adjust as needed
-      }}>
+      <div className="imageContainer">
         <ImageDisplay imageName={matchedImage} />
       </div>
     </div>
   );
 }
+
 
 export default App;
 

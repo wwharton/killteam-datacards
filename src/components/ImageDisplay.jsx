@@ -6,8 +6,8 @@ const ImageDisplay = ({ imageName }) => {
       display: 'flex', 
       justifyContent: 'center', 
       alignItems: 'center', 
-      height: 'calc(100vh - 230px)', // adjust this based on the size of your header
-      width: '100vw'
+      height: '100%',
+      width: '100%',
     }}>
       <img src={`/images/${imageName}`} alt="" style={{ 
         maxWidth: '100%', 

@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+/* App.css */
+.container {
+  display: flex;
+  align-items: flex-start;
+  height: calc(100vh - 30px);
+  width: 100vw;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 10%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.imageContainer {
+  width: 90%;
+  height: 100%;
+}
+
+/* Styles for viewport widths up to 600px (change this value to suit your needs) */
+@media screen and (max-width: 1330px) {
+  .container {
+    flex-direction: column;
+  }
+  .buttonContainer {
+    width: 100%;
+    height: auto;
+  }
+  .imageContainer {
+    width: 100%;
+  }
+}
